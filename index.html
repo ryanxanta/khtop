@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Verify Product</title>
+</head>
+<body style="text-align:center; margin-top:100px; font-family:Arial">
+
+<h2>Enter Authentication PIN</h2>
+
+<input id="pin" placeholder="Enter PIN" style="padding:10px; font-size:16px;">
+<br><br>
+<button onclick="go()" style="padding:10px 20px;">Verify</button>
+
+<script>
+function go() {
+  const pin = document.getElementById("pin").value;
+  window.location.href = "verify.html?pin=" + pin;
+}
+</script>
+
+</body>
+</html>

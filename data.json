@@ -1,0 +1,35 @@
+[
+  {
+    "pin": "8265820485712868",
+    "part_number": "90793-AH411",
+    "part_name": "YAMALUBE YGO 4T 20W-50",
+    "distributor": "Hong Leong Yamaha Motor Sdn. Bhd.",
+    "origin": "Malaysia",
+    "batch": "B188B069",
+    "mfg_date": "2025/03/30 14:46:06",
+    "check_count": 1,
+    "first_check": "2026/03/30 14:46:06"
+  },
+  {
+    "pin": "1234567890123456",
+    "part_number": "90793-AH500",
+    "part_name": "YAMALUBE SCOOTER 10W-40",
+    "distributor": "Hong Leong Yamaha Motor Sdn. Bhd.",
+    "origin": "Malaysia",
+    "batch": "B999A111",
+    "mfg_date": "2025/01/15 10:20:00",
+    "check_count": 1,
+    "first_check": "2026/03/29 11:10:00"
+  },
+  {
+    "pin": "9999888877776666",
+    "part_number": "90793-AH999",
+    "part_name": "YAMALUBE SUPER SPORT 15W-50",
+    "distributor": "Yamaha Motor Asia",
+    "origin": "Japan",
+    "batch": "JP2025001",
+    "mfg_date": "2025/02/01 08:00:00",
+    "check_count": 1,
+    "first_check": "2026/03/28 09:00:00"
+  }
+]

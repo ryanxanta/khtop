@@ -1,0 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f2f2f2;
+}
+
+/* Top red bar */
+.header {
+  background: #d60000;
+  color: white;
+  padding: 14px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Main container */
+.container {
+  padding: 15px;
+}
+
+/* Status */
+.success {
+  text-align: center;
+  color: red;
+  font-size: 34px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* PIN */
+.pin {
+  text-align: center;
+  font-size: 22px;
+  letter-spacing: 4px;
+  color: red;
+  margin: 10px 0;
+}
+
+/* Text */
+p {
+  text-align: center;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* Info box */
+.info-box {
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 15px;
+}
+
+/* Row layout */
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Remove last line */
+.row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 13px;
+  color: #555;
+}
+
+.value {
+  font-size: 13px;
+  color: #000;
+  text-align: right;
+  max-width: 60%;
+}
+
+/* Responsive tweak */
+@media (min-width: 768px) {
+  .container {
+    max-width: 500px;
+    margin: auto;
+  }
+}
