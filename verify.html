@@ -183,13 +183,17 @@ const app = document.getElementById("app");
 
 // ✅ 没有 PIN
 if (!pin) {
-  app.innerHTML = `
-  <div class="loading">
-    <div class="spinner"></div>
-    <div class="loading-text">Checking product...</div>
-  </div>
-`;
+  app.innerHTML = `<div class="status">No PIN</div>`;
 } else {
+
+  // 🔥 每次查询前显示 loading
+  app.innerHTML = `
+    <div class="loading">
+      <div class="spinner"></div>
+      <div class="loading-text">Checking product...</div>
+    </div>
+  `;
+
 
   fetch(API_URL + "?pin=" + encodeURIComponent(pin))
     .then(res => res.json())
