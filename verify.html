@@ -143,30 +143,35 @@
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbx3QJr8LHmEbk_7-dswwM38QY9SiMT3z7Ngk1M7NHp4EIaSUiSZNAMQXxywiUXvQIVMzQ/exec";
 
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbx3QJr8LHmEbk_7-dswwM38QY9SiMT3z7Ngk1M7NHp4EIaSUiSZNAMQXxywiUXvQIVMzQ/exec";
+
 const params = new URLSearchParams(window.location.search);
 const pin = params.get("pin");
 
 const app = document.getElementById("app");
 
-// 👉 没有 PIN
+// ✅ 没有 PIN
 if (!pin) {
-  app.innerHTML = `<div class="status">No PIN Provided</div>`;
+  app.innerHTML = `<div class="status">No PIN</div>`;
 } else {
 
   fetch(API_URL + "?pin=" + encodeURIComponent(pin))
     .then(res => res.json())
     .then(record => {
 
-      console.log("API:", record);
+      console.log(record);
 
-      // 👉 查不到
+      // ✅ 查不到
       if (!record) {
-        app.innerHTML = `<div class="status">Invalid / Fake Product</div>`;
+        app.innerHTML = `<div class="status">Invalid</div>`;
         return;
       }
 
+      // ✅ 防止 pin format error
       const formattedPin = pin.match(/.{1,4}/g)?.join(" ") || pin;
 
+      // 🔥🔥🔥 你原本的 UI（完全保留）
       document.getElementById("app").innerHTML = `
         <div class="logo">
             <img src="logo.png" alt="Genuine Logo">
