@@ -4,6 +4,7 @@
   <title>Result</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Better font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
@@ -13,6 +14,7 @@
       background: #ffffff;
     }
 
+    /* Top red bar */
     .header {
       background: #d60000;
       color: white;
@@ -20,6 +22,8 @@
       padding: 14px;
       font-size: 16px;
       font-weight: 500;
+      position: sticky;
+      top: 0;
     }
 
     .container {
@@ -27,49 +31,103 @@
       text-align: center;
     }
 
+    /* Logo placeholder */
+    .logo {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 10px;
+    }
+
+    /* Status */
     .status {
       color: #d60000;
-      font-size: 34px;
+      font-size: 38px;
       font-weight: 700;
-      margin: 15px 0;
+      margin: 10px 0;
     }
 
     .desc {
-      font-size: 14px;
+      font-size: 15px;
       color: #1f3a5f;
+      font-weight: 500;
+      line-height: 1.4;
       margin-bottom: 15px;
     }
 
+    .pin-title {
+      font-size: 15px;
+      color: #1f3a5f;
+      font-weight: 500;
+    }
+
     .pin {
-      font-size: 20px;
-      letter-spacing: 3px;
       color: #d60000;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 3px;
       margin: 10px 0;
     }
 
     .info-text {
-      font-size: 13px;
-      margin: 5px 0;
+      font-size: 14px;
+      color: #1f3a5f;
+      font-weight: 500;
+      margin: 6px 0;
     }
 
+    /* Section header */
     .section {
-      margin-top: 20px;
+      margin-top: 25px;
       text-align: left;
     }
 
     .section-title {
+      display: flex;
+      align-items: center;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 15px;
+      color: black;
       margin-bottom: 10px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background: #d60000;
+      margin-right: 8px;
+    }
+
+    /* Table style */
+    .table {
+      width: 100%;
     }
 
     .row {
       display: flex;
       justify-content: space-between;
-      padding: 8px;
+      padding: 10px;
       background: #f2f2f2;
-      margin-bottom: 5px;
-      border-radius: 4px;
+      margin-bottom: 6px;
+      border-radius: 3px;
+    }
+
+    .label {
+      font-weight: 500;
+      color: #1f3a5f;
+      font-size: 14px;
+    }
+
+    .value {
+      font-weight: 600;
+      color: #000;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .logo img {
+      width: 300px;
+      margin: 10px 0;
     }
   </style>
 </head>
@@ -77,8 +135,9 @@
 <body>
 
 <div class="header">Result</div>
+
 <div class="container">
-  <div id="app">Loading...</div>
+  <div id="app"></div>
 </div>
 
 <script>
@@ -108,28 +167,60 @@ if (!pin) {
 
       const formattedPin = pin.match(/.{1,4}/g)?.join(" ") || pin;
 
-      app.innerHTML = `
+      document.getElementById("app").innerHTML = `
+        <div class="logo">
+            <img src="logo.png" alt="Genuine Logo">
+        </div>
+
         <div class="status">Successful</div>
 
         <div class="desc">
-          Thank you for purchasing<br>
-          Genuine Product
+          Thank you for purchasing Yamaha<br>
+          Genuine Product.
         </div>
 
+        <div class="pin-title">Your Authentication PIN</div>
         <div class="pin">${formattedPin}</div>
 
-        <div class="info-text">Checked: ${record.check_count || 1} times</div>
-        <div class="info-text">First Check: ${record.first_check || "-"}</div>
+        <div class="info-text">Being checked: ${record.check_count || 1} times</div>
+
+        <div class="info-text">1st checking date & time:</div>
+        <div class="info-text">${record.first_check || "-"}</div>
 
         <div class="section">
-          <div class="section-title">PRODUCT INFO</div>
+          <div class="section-title">PRODUCT INFORMATION</div>
 
-          <div class="row"><span>Part No</span><span>${record.part_number || "-"}</span></div>
-          <div class="row"><span>Name</span><span>${record.part_name || "-"}</span></div>
-          <div class="row"><span>Distributor</span><span>${record.distributor || "-"}</span></div>
-          <div class="row"><span>Origin</span><span>${record.origin || "-"}</span></div>
-          <div class="row"><span>Batch</span><span>${record.batch || "-"}</span></div>
-          <div class="row"><span>MFG Date</span><span>${record.mfg_date || "-"}</span></div>
+          <div class="table">
+            <div class="row">
+              <div class="label">Part Number</div>
+              <div class="value">${record.part_number || "-"}</div>
+            </div>
+
+            <div class="row">
+              <div class="label">Part Name</div>
+              <div class="value">${record.part_name || "-"}</div>
+            </div>
+
+            <div class="row">
+              <div class="label">Distributor</div>
+              <div class="value">${record.distributor || "-"}</div>
+            </div>
+
+            <div class="row">
+              <div class="label">Part Origin</div>
+              <div class="value">${record.origin || "-"}</div>
+            </div>
+
+            <div class="row">
+              <div class="label">Batch Number</div>
+              <div class="value">${record.batch || "-"}</div>
+            </div>
+
+            <div class="row">
+              <div class="label">Manufacturing Date</div>
+              <div class="value">${record.mfg_date || "-"}</div>
+            </div>
+          </div>
         </div>
       `;
     })
