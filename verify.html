@@ -148,7 +148,7 @@ if (!pin) {
   document.getElementById("app").innerHTML = `<div class="status">No PIN</div>`;
 } else {
 
-  fetch("data.json")
+  fetch("https://script.google.com/macros/s/AKfycbx3QJr8LHmEbk_7-dswwM38QY9SiMT3z7Ngk1M7NHp4EIaSUiSZNAMQXxywiUXvQIVMzQ/exec?pin=" + pin)
     .then(res => res.json())
     .then(data => {
 
