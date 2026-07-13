@@ -1,86 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Scan QR Code</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', Arial, sans-serif;
-      background: #ffffff;
-    }
-
-    .header {
-      background: #d60000;
-      color: white;
-      text-align: center;
-      padding: 14px;
-      font-size: 16px;
-      font-weight: 500;
-      position: sticky;
-      top: 0;
-    }
-
-    .container {
-      padding: 18px;
-      text-align: center;
-    }
-
-    #reader {
-      width: 100%;
-      max-width: 400px;
-      margin: 20px auto;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .hint {
-      font-size: 14px;
-      color: #1f3a5f;
-      font-weight: 500;
-      margin: 10px 0;
-    }
-
-    .error {
-      color: #d60000;
-      font-size: 14px;
-      font-weight: 500;
-      margin: 10px 0;
-      min-height: 18px;
-    }
-
-    .manual-link {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #1f3a5f;
-      text-decoration: underline;
-    }
-
-    @media (min-width: 768px) {
-      .container {
-        max-width: 500px;
-        margin: auto;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="header">Scan QR Code</div>
+<div class="page">
+  <div class="header">Scan QR Code</div>
 
-<div class="container">
-  <div class="hint">Point your camera at the QR code on the product</div>
-  <div id="reader"></div>
-  <div id="error" class="error"></div>
-  <a class="manual-link" href="index.html">Enter PIN manually instead</a>
+  <div class="main">
+    <div class="container">
+      <div class="card">
+        <div class="title">Scan Product Code</div>
+        <div class="subtitle">Point your camera at the QR code on the product label</div>
+
+        <div class="scanner-wrap">
+          <div id="reader"></div>
+        </div>
+
+        <div id="error" class="error-box"></div>
+
+        <a href="index.html" class="btn btn-outline" style="margin-top: 20px;">Enter PIN Manually</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">&copy; Hong Leong Yamaha Motor Sdn. Bhd.</div>
 </div>
 
 <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 <script>
   const errorEl = document.getElementById("error");
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.classList.add("show");
+  }
 
   function extractPin(decodedText) {
     try {
@@ -96,7 +56,7 @@
   function onScanSuccess(decodedText) {
     const pin = extractPin(decodedText);
     if (!pin) {
-      errorEl.textContent = "Could not read a valid PIN from this code.";
+      showError("Could not read a valid PIN from this code.");
       return;
     }
     window.location.href = "verify.html?pin=" + encodeURIComponent(pin);
@@ -110,7 +70,7 @@
     onScanSuccess,
     () => {} // ignore per-frame scan failures
   ).catch(err => {
-    errorEl.textContent = "Camera access failed. Please allow camera permission or enter your PIN manually.";
+    showError("Camera access failed. Please allow camera permission or enter your PIN manually.");
     console.error(err);
   });
 </script>

@@ -1,86 +1,360 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f2f2f2;
+:root {
+  --red: #d60000;
+  --red-dark: #b80000;
+  --navy: #1f3a5f;
+  --bg: #f4f5f7;
+  --border: #e6e6e6;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --radius: 16px;
 }
 
-/* Top red bar */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', Arial, sans-serif;
+  background: var(--bg);
+  color: #222;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- Header ---------- */
 .header {
-  background: #d60000;
-  color: white;
-  padding: 14px;
+  background: var(--red);
+  color: #fff;
+  padding: 16px;
   text-align: center;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
+  letter-spacing: .3px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
 }
 
-/* Main container */
+/* ---------- Layout ---------- */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 28px 16px;
+}
+
 .container {
-  padding: 15px;
+  width: 100%;
 }
 
-/* Status */
-.success {
+@media (min-width: 640px) {
+  .container {
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+  width: 100%;
+}
+
+.brand-logo {
+  display: block;
+  margin: 0 auto 18px;
+  max-width: 160px;
+  height: auto;
+}
+
+.title {
   text-align: center;
-  color: red;
-  font-size: 34px;
-  font-weight: bold;
-  margin-top: 10px;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 4px;
 }
 
-/* PIN */
-.pin {
+.subtitle {
   text-align: center;
-  font-size: 22px;
-  letter-spacing: 4px;
-  color: red;
-  margin: 10px 0;
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 24px;
 }
 
-/* Text */
-p {
+/* ---------- Form ---------- */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 13px 14px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: #fafafa;
+  transition: border-color .15s, background .15s, box-shadow .15s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--red);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(214, 0, 0, .08);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--red-dark);
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--navy);
+  border: 1.5px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #aaa;
+  font-size: 12px;
+  margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.divider span {
+  padding: 0 10px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #aaa;
+  padding: 18px;
+}
+
+/* ---------- Scan page ---------- */
+.scanner-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+#reader {
+  width: 100%;
+}
+
+.hint {
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+  margin: 16px 0;
+}
+
+.error-box {
+  display: none;
+  background: #fdecea;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.error-box.show {
+  display: block;
+}
+
+/* ---------- Result page (verify.html) ---------- */
+.result-logo {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.result-logo img {
+  width: 220px;
+  max-width: 70%;
+}
+
+.status {
+  text-align: center;
+  color: var(--red);
+  font-size: 32px;
+  font-weight: 700;
+  margin: 6px 0 12px;
+}
+
+.desc {
   text-align: center;
   font-size: 14px;
-  margin: 5px 0;
+  color: var(--navy);
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 18px;
 }
 
-/* Info box */
-.info-box {
-  background: white;
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 15px;
+.pin-title {
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+  font-weight: 500;
 }
 
-/* Row layout */
+.pin {
+  text-align: center;
+  color: var(--navy);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin: 6px 0 14px;
+}
+
+.info-text {
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+  margin: 4px 0;
+}
+
+.section {
+  margin-top: 26px;
+  text-align: left;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+.section-title::before {
+  content: "";
+  width: 24px;
+  height: 3px;
+  background: var(--red);
+  margin-right: 10px;
+  border-radius: 2px;
+}
+
+.table {
+  width: 100%;
+}
+
 .row {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #f7f7f8;
+  margin-bottom: 8px;
+  border-radius: 8px;
 }
 
-/* Remove last line */
 .row:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .label {
   font-size: 13px;
-  color: #555;
+  color: #888;
+  font-weight: 500;
 }
 
 .value {
   font-size: 13px;
-  color: #000;
+  color: #222;
+  font-weight: 600;
   text-align: right;
-  max-width: 60%;
 }
 
-/* Responsive tweak */
-@media (min-width: 768px) {
-  .container {
-    max-width: 500px;
-    margin: auto;
+.loading {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #eee;
+  border-top: 3px solid var(--red);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto;
+}
+
+.loading-text {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #999;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -1,23 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Verify Product</title>
+  <meta charset="UTF-8">
+  <title>Product Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body style="text-align:center; margin-top:100px; font-family:Arial">
+<body>
 
-<h2>Enter Authentication PIN</h2>
+<div class="page">
+  <div class="header">Product Verification</div>
 
-<input id="pin" placeholder="Enter PIN" style="padding:10px; font-size:16px;">
-<br><br>
-<button onclick="go()" style="padding:10px 20px;">Verify</button>
-<br><br>
-<a href="scan.html" style="display:inline-block; padding:10px 20px; background:#d60000; color:white; text-decoration:none; border-radius:4px;">Scan QR Code</a>
+  <div class="main">
+    <div class="container">
+      <div class="card">
+        <img class="brand-logo" src="logo.png" alt="Genuine Logo">
+
+        <div class="title">Verify Your Product</div>
+        <div class="subtitle">Enter the authentication PIN found on your product label</div>
+
+        <div class="field">
+          <label for="pin">Authentication PIN</label>
+          <input id="pin" class="input" placeholder="Enter PIN" inputmode="numeric" autocomplete="off">
+        </div>
+
+        <button class="btn btn-primary" onclick="go()">Verify</button>
+
+        <div class="divider"><span>OR</span></div>
+
+        <a href="scan.html" class="btn btn-outline">Scan QR Code</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">&copy; Hong Leong Yamaha Motor Sdn. Bhd.</div>
+</div>
 
 <script>
 function go() {
-  const pin = document.getElementById("pin").value;
-  window.location.href = "verify.html?pin=" + pin;
+  const pin = document.getElementById("pin").value.trim();
+  if (!pin) return;
+  window.location.href = "verify.html?pin=" + encodeURIComponent(pin);
 }
+
+document.getElementById("pin").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") go();
+});
 </script>
 
 </body>
